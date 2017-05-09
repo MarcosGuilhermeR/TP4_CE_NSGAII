@@ -13,17 +13,13 @@ varMax = 17;
 
 MaxIt=1000;         % Maximum Number of Iterations
 
-nPop=4;            % Population Size
+nPop=20;            % Population Size
 
 pCrossover=1.0; %100%                   % Crossover Percentage
 nCrossover=2*round(pCrossover*nPop/2);  % Number of Parnets (Offsprings)
 
 pMutation=0.1; %10%                     % Mutation Percentage
 nMutation=round(pMutation*nPop);        % Number of Mutants
-
-%mu=0.02;                                % Mutation Rate
-
-%sigma=0.1*(varMax-varMin);  % Mutation Step Size
 
 %Definition individual
 individual.x=[];
@@ -48,7 +44,7 @@ end
 pop_c = generate_population_children (pop, nPop, nCrossover, individual);
 
 %mutation
-%pop_c = mutation_children (pop_c);
+pop_c = mutation_childrens (pop_c, nMutation);
 
 %merge
 pop = [pop; pop_c];

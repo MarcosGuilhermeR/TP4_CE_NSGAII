@@ -1,19 +1,6 @@
-function y=mutate(x,mu,sigma)
+function x=mutate(x)
 
-    nVar=numel(x);
-    
-    nMu=ceil(mu*nVar);
-
-    j=randsample(nVar,nMu);
-    if numel(sigma)>1
-        sigma = sigma(j);
-    end
-    
-    y=x;
-    
-    y(j)=x(j)+sigma.*randn(size(j));
-    
-    
-    
+    r = randn();
+    x = x + r;
 
 end
