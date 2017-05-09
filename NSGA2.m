@@ -13,7 +13,7 @@ varMax = 17;
 
 MaxIt=1000;         % Maximum Number of Iterations
 
-nPop=20;            % Population Size
+nPop=4;            % Population Size
 
 pCrossover=1.0; %100%                   % Crossover Percentage
 nCrossover=2*round(pCrossover*nPop/2);  % Number of Parnets (Offsprings)
@@ -55,6 +55,14 @@ pop = [pop; pop_c];
 
 %fast_non_dominated_sort
 [pop, F]=fast_non_dominated_sort(pop);
+
+
+%Print Fronts
+nf = numel(F);
+
+for i=1: nf
+   fprintf('Fronteira %i',i); disp(F{i})
+end
 
 
 

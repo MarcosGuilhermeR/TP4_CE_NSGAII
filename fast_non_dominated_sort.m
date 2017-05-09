@@ -1,11 +1,13 @@
 function [pop, F] = fast_non_dominated_sort(pop)
     nPop = numel(pop);
     
+    %inicializate var
     for i=1:nPop
         pop(i).dominationSet=[];
         pop(i).dominatedCount=0;
     end
     
+    %Inicializate cell array
     F{1}=[];
     
     for i=1: nPop
@@ -26,7 +28,7 @@ function [pop, F] = fast_non_dominated_sort(pop)
        end
        
        if pop(i).dominatedCount == 0
-           F{1} = [F{1} i];
+           F{1} = [F{1} i]; %adiciona o índice daquele indivíduo na fronteira um
            pop(i).rank=1;
        end
     end
@@ -46,7 +48,7 @@ function [pop, F] = fast_non_dominated_sort(pop)
                 q.dominatedCount=q.dominatedCount-1;
                 
                 if q.dominatedCount==0
-                    Q=[Q j]; %#ok
+                    Q=[Q j];
                     q.rank=k+1;
                 end
                 
@@ -59,14 +61,8 @@ function [pop, F] = fast_non_dominated_sort(pop)
         end
         
         k=k+1;
-        F{k}=Q; %#ok
-        
-        
-        
+        F{k}=Q;
+
     end
     
-    
-
-
-
 end
