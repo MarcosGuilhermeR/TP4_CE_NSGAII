@@ -10,6 +10,7 @@ function [pop, F] = fast_non_dominated_sort(pop)
     %Inicializate cell array
     F{1}=[];
     
+    %NSGA Parte 1
     for i=1: nPop
        for j=i+1: nPop 
            p = pop(i);
@@ -33,6 +34,7 @@ function [pop, F] = fast_non_dominated_sort(pop)
        end
     end
     
+    %NSGA Parte 2
     k=1;
     
     while true

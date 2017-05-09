@@ -2,8 +2,6 @@ clc;
 clear;
 close all;
 
-%CostFunction=@(x) parabolas(x);      % Cost Function
-
 nVar = 1;           %Number of Decision Variables
 varSize=[1 nVar];   % Size of Decision Variables Matrix
 
@@ -29,14 +27,13 @@ individual.dominationSet=[];
 individual.dominatedCount=[];
 individual.crowdingDistance=[];
 
-%Create population cleaning
+%Create clean population
 pop=repmat(individual,nPop,1);
 
 %Generate initial population
 for i=1:nPop
     
     pop(i).x=unifrnd(varMin,varMax,varSize);
-    
     pop(i).cost= cost_function(pop(i).x);
 end
 
