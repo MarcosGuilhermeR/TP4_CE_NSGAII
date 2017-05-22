@@ -9,7 +9,7 @@ varSize=[1 nVar];   % Size of Decision Variables Matrix
 varMin = -15;
 varMax = 17;
 
-MaxIt=50;         % Maximum Number of Iterations
+MaxIt=1000;         % Maximum Number of Iterations
 
 nPop=20;            % Population Size
 
@@ -38,7 +38,7 @@ for i=1:nPop
 end
 
 nit = 0;
-while nit < MaxIt
+while nit <= MaxIt
     %Crossover
     pop_c = generate_population_children (pop, nPop, nCrossover, individual);
     
@@ -82,17 +82,22 @@ while nit < MaxIt
     popr = pop(F{i});
     [~, CDSO]=sort([popr.crowdingDistance],'descend');
     
+    %"Truncating"
     popr = popr(CDSO);
     popn=[popn; popr(1: nPop-np)];
     
     pop = popn;
     
     %fast_non_dominated_sort
-    [~, F]=fast_non_dominated_sort(pop);
+    %[~, F]=fast_non_dominated_sort(pop);
     
     % Show Iteration Information
-    disp(['Iteration ' num2str(nit) ': Number of F1 Members = ' num2str(numel(F{1}))]);
+    %disp(['Iteration ' num2str(nit) ': Number of F1 Members = ' num2str(numel(F{1}))]);
     
+    if nit == 1 || nit == 25 || nit == 200 || nit == 500 || nit == 1000
+        disp(nit)
+        disp([pop.cost]');
+    end
     % Plot F1 Costs
     figure(1);
     plot_costs(pop);
